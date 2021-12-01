@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Mon Contre Stress - BDD</title>
+</head>
+<body>
+<p>
+    creation des tables avec clés primaires et etrangères<br>
+
+    types de donnees dans bigquery : int64, float64, NUMERIC, bool, string, date, datetime<br>
+
+    insertion dans une table plusieurs elements et un seul element<br>
+
+    copier des instances d'une entite dans sa table correspondante depuis un autre fichier externe<br>
+
+    selectioner plusieurs enregistrements d'une entité avec ou sans distinct<br>
+
+    mettre à jour un enregistrement ou plusieurs enregistrement<br>
+
+    supprimer un ou plusieurs enregistremnts<br>
+
+    ajouter une colonne dans une table<br>
+
+    supprimer une colonne dans une table<br>
+
+    ajouter une contrainte sur une colonne de la table<br>
+
+    ajouter une cle primaire sur une colonne de la table<br>
+
+    renommer une colonne d'une table<br>
+
+    clause IN / NOT IN<br>
+
+    clause OR<br>
+
+    clause LIKE / NOT LIKE<br>
+
+    clause BETWEEN / NOT BETWEEN<br>
+
+    clause ORDER BY<br>
+
+    clause LIMIT xxx<br>
+
+    clause AS "xxx"<br>
+
+    clause COUNT( ... )<br>
+
+    clause SUM ( ... )<br>
+
+    clause AVG ( ... )
+
+    clause MIN( ... ) / MAX( ... )
+
+    clause GROUP BY( ... )
+
+    clause HAVING( condition )
+
+    clause WHERE ...
+
+    clause AND ... / OR ...<br>
+
+    clause NATURAL JOIN ...
+
+    clause INNER JOIN  ... ON ...
+
+    clause INNER JOIN ... ON ... avec clé non identique et valeur non identique
+
+    clause CROSS JOIN ...
+
+    clause LEFT JOIN ... ON ...<br>
+
+    clause RIGHT JOIN ... ON ...
+
+    clause FULL OUTER JOIN ... ON ...
+
+    clause EXCEPT
+
+    ....
+    EXCEPT
+    ....
+
+
+    clause UNION
+
+    ...
+    UNION
+    ...
+
+    les sous requetes au niveau du SELECT et du WHERE<br>
+
+    Creation d'une vue : create view esseai As .../ drop view esseai / update essea ...
+
+    VIEW can be updated under certain conditions which are given below −
+    • The SELECT clause may not contain the keyword DISTINCT.
+    • The SELECT clause may not contain summary functions.
+    • The SELECT clause may not contain set functions.
+    • The SELECT clause may not contain set operators.
+    • The SELECT clause may not contain an ORDER BY clause.
+    • The FROM clause may not contain multiple tables.
+    • The WHERE clause may not contain subqueries.
+    • The query may not contain GROUP BY or HAVING.
+    • Calculated columns may not be updated.
+    • All NOT NULL columns from the base table must be included in the view in
+    order for the INSERT query to function.<br>
+
+    clause LENGTH ( ... ) / UPPER( ... ) / LOWER( ... ) / REPLACE( ... ) / TRIM( ... ) / LTRIM ( ... ) / ... || ... || ... / SUBSTRING( ... FOR ... ) / STRING_AGG( ..., ... )
+
+    <br>clause CEIL( ... ) / FLOOR ( ... ) / ROUND ( ... ) >= 5 on arrondi sinon on arrondi pas / POWER ( ..., ... )
+
+    <br>    clause CURRENT_DATE / CURRENT_TIME / CURRENT_TIMESTAMP / AGE( new_date, old_date ) / extract ( MONTH FROM 'xxxx-xx-xx' ) /
+
+    <br>clause to_char( value_date_number_string, 'format') / to_number( string, 'format' ) / to_date( string, 'format' )
+
+
+    <br>YYYY 4-digit year
+    MM Month (01-12; JAN = 01).
+    Mon Abbreviated name of month capitalized
+    Month Name of month capitalized, padded with blanks to length of 9 characters
+    DAY Name of day in all uppercase, padded with blanks to length of 9 characters
+    Day Name of day capitalized, padded with blanks to length of 9 characters
+    DDD Day of year (1-366)
+    DD Day of month (01-31)
+    HH Hour of day (01-12)
+    HH12 Hour of day (01-12)
+    HH24 Hour of day (00-23)
+    MI Minute (00-59)
+    SS Second (00-59)
+    am, AM, pm,
+    or PM
+    Meridian indicator
+    9 Value (with no leading zeros)
+    0 Value (with leading zeros)
+    . Decimal
+    , Group separator
+    PR Negative value in angle brackets
+    S Sign
+    L Currency symbol
+    MI Minus sign (for negative numbers)
+    PL Plus sign (for positive numbers)
+    SG Plus/minus sign (for positive and negative numbers)
+    EEEE Scientific notation<br>
+
+
+    create / drop / rename / grant or revoke / loggedin users
+
+    <br>clause case when ... then ... else ... END AS ...
+
+    <br>but de la normalisation = evaluer la qualite du schema ou des tables et leur relation  / entite et leur relation + proposer des modifications à faire
+
+    but d'une base de donnée relationnelle est d'eviter des redondances et des problemes de mise à jours ou de coherences
+
+    MCD + MLD + MPD = démarche de creation d'une base de donnée de bonne qualite
+
+    base donnée de bonne qualite = base de donnée préexistante + normalisation
+
+    qualité d"une base de donnee = coherente + non redondance
+
+    demarche = considerer une seule relationR + supposer connaitre toutes les attributs de R + supposer connaitre toutes les dependances fonctionnelles entre les attributs
+
+    les clés / les clés canditates de la relation R est : Toutes les cl´es de R peuvent ˆetre obtenues `a partir des d´ependances donn´ees.
+
+    R = relation
+
+    A = ensemble d'attributs de R = a1a2a3...aN
+
+    R[A] = relation projection de R sur l'ensemble d'attributs de A
+
+    S = ensemble de tout les attributs de la relation R
+
+    definition de dependance fonctionnelle entre les attributs de A et B de la relation R ====> On dit que A d´etermine (fonctionnellement) B, ou que B d´epend
+    (fonctionnellement) de A, et on note A → B lorsque :
+    D`es que deux lignes de R ont la mˆeme valeur en chaque attribut de A
+    elles ont aussi la mˆeme valeur en chaque attribut de B.<=====
+
+    signification de la relation l -> os ===> l → os signiﬁe que tout livre est un exemplaire d’une œuvre et a sa place dans une salle, <====
+
+    l -> os est équivalente à l -> o et l -> s<br>
+
+    signification concréte de s -> b ===> s → b signiﬁe que toute salle est dans un bˆatiment. <===
+
+    signification de c → np par c → n et c → p.
+    <br>
+    signification de np -> c != n -> c et p -> c
+    <br>
+    maitrise de la definition de la dépendance fonctionnelle : La d´eﬁnition dit que A → B si et seulement si `a chaque valeur
+    hx1 ,...,xn i de a1 ...an correspond exactement une valeur hy1 ,...,yp i de
+    b1 ...bp.
+
+    definition de la fonction de dépendance fonctionnelle : Alors, en posant f(hx1 ,...,xn i) = hy1 ,...,yp i on d´eﬁnit une fonction
+    f : R[A] → R[B].
+
+    On retrouve la notion de ##cl´e### relative `a un ensemble de d´ependances
+    fonctionnelles D.
+    <br>
+    Une supercl´e K est un ensemble d’attributs tels que K → S, o`u S est
+    l’ensemble des attributs de la relation R.
+
+    Une cl´e K est une supercl´e minimale : K → S et A != S pour tout A inclus dans K .
+
+    S est toujours une supercl´e de R.
+
+    Si K est une supercl´e de R et A un ensemble d’attributs de R alors K → A.
+
+    K est une supercl´e de R si et seulement si K contient une cl´e de R.
+
+    Si K est une supercl´e de R et A un ensemble d’attributs de R
+    alors K → A.
+
+    K est une supercl´e de R si et seulement si K contient une cl´e de
+    R.
+
+    proprieters fondemmentales de la dependance fonctionnelle :
+
+    R´eﬂexivit´e (  augment´ee  ). Si B ⊆ A alors A → B.
+    Transitivit´e. Si A → B et B → C alors A → C.
+    Augmentation. Si A → B alors A ∪C → B ∪C.
+    <br>
+    esseai :
+
+    R´eﬂexivit´e stricte. A → A.
+    Union. Si A → B et A → C alors A → B ∪C.
+    D´ecomposition. Si A → B ∪C alors A → B et A → C.
+    Transitivit´e augment´ee. Si A → B et B ∪C → D alors A ∪C → D.
+    Union augment´ee. Si A → B et C → D alors A ∪C → B ∪D.
+    Affaiblissement. Si A → B et A ⊆ A
+    0
+    et B
+    0 ⊆ A ∪B alors A
+    0 → B
+    0
+    .
+    <br>
+    Une d´ependance fonctionnelle A → B est cons´equence de D si A → B
+    peut ˆetre obtenue `a partir des d´ependances fonctionnelles de D en
+    utilisant les trois propri´et´es r´eﬂexivit´e, transitivit´e, augmentation.
+
+    Une preuve est un arbre dont chaque nœud est une pr´emisse et/ou
+    une conclusion de r`egle et dont la racine est la conclusion de la
+    preuve, dans l’exemple pr´ec´edent ab → e.
+
+    <br>
+    Dans une preuve `a partir de D, les feuilles (non-racines) de l’arbre
+    sont :
+    soit des d´ependances de D,
+    soit des inclusions X ⊆ Y.
+    <br>
+    Nous d´eﬁnissons inductivement la hauteur h(T) de T comme suit.
+    Si T consiste uniquement en A → B, alors h(T) = 0.
+    Sinon, A → B est la racine de T : la conclusion A → B est obtenue `a
+    partir d’une premise P (r´eﬂexivit´e ou augmentation) ou deux pr´emises
+    P
+    0
+    et P
+    00
+    (transitivit´e).
+    Dans le premier cas, si A → B est la conclusion d’une r´eﬂexivit´e alors
+    h(T) = 1, sinon (en cas d’augmentation) h(T) = 1 +h(T(P)).
+    Dans le second cas, h(T) = 1 +max{h(T(P
+    0
+    )),h(T(P
+    00
+    ))}.
+    <br>
+    Soit T un arbre de preuve de A → B. Nous noterons T(x) le sous-arbre de T
+    enracin´e en le nœud x.
+
+    Une d´ependance fonctionnelle A → B est singleton si elle est de la
+    forme a1 ...an → b avec b ∈ S et b NOT IN {a1 ,...,an }, o`u S est l’ensemble
+    des attributs de la relation R.
+
+    Etant donn´e un ensemble de d´ependances fonctionnelles D,
+    l’ensemble de d´ependances fonctionnelles singletons associ´e `a D est
+    obtenu en remplac¸ant
+    chaque d´ependance fonctionnelle a1 ,...,an → b1 ...bp de D
+    par
+    les d´ependances fonctionnelles a1 ,...,an → bi pour tout i entre 1 et p
+    tel que bi NOT IN {a1 ,...,an }.
+
+    Soit D un ensemble de d´ependances fonctionnelles et D'
+    l’ensemble
+    de d´ependances fonctionnelles singletons associ´e `a D.
+
+    <br>
+    Alors D et D'
+    sont ´equivalents, au sens suivant :
+    une d´ependance fonctionnelle A → B est cons´equence de D si et
+    seulement si elle est cons´equence de D'
+    .
+    <br>
+    Soit S l’ensemble des attributs de la relation R.
+    Soit D un ensemble de dependances fonctionnelles. ´
+    Pour tout ensemble d’attributs A ⊆ S, la cloture ˆ (ou fermeture) A
+    + de
+    A (relativement a` D) est le plus grand ensemble d’attributs tel que
+    la dependance fonctionnelle ´ A → A
+    + est consequence de ´ D.
+    <br>
+    A ⊆ A ⊆ S
+    K est une supercl´e si et seulement si K+ = S.
+    K est une cl´e si et seulement si K+= S et pour tout A IN K on a A+ != S.
+    <br>
+    Un ensemble D de d´ependances fonctionnelles singletons
+    Un ensemble d’attributs A
+    La clˆoture A+ de A relativement `a D.
+    -I- Initialiser A+ `a A.
+    -B- Tant qu’il existe une d´ependance A' → b dans D avec A' ⊆ A+ et b not in A+, ajouter b `a A+
+    .
+    -R- Retourner A+
+
+
+    on peut avoir des cas où on a une super non clé et une clé qui est un sous ensemble de la super non clé
+
+    preuve de l'algorithme pour le calcul de toutes les clés d'une relation
+
+    La clˆoture (ou fermeture) D +
+    de D est l’ensemble de toutes les
+    d´ependances fonctionnelles qui sont cons´equences de D.
+
+    D'
+    est cons´equence de D si chaque d´ependance fonctionnelle
+    de D 0
+    est cons´equence de D ; on note D => D'
+    .
+
+    D et D'
+    sont ´equivalents si D =⇒ D'
+    et D'
+    =⇒ D ; on note
+    D ⇐⇒ D '
+
+    <br>
+    D ⊆ D +
+    et D +
+    est en g´en´eral  tr`es grand  !
+    si D' ⊆ D alors D =⇒ D'
+    .
+    D ⇐⇒ D+
+    .
+
+    <br>
+    On appelle table des clotures de D la table `a deux colonnes dont les
+    lignes sont les couples (A,A+) pour tous les ensembles non vides
+    d’attributs A, sauf lorsque A est une supercle-non-cle.
+    <br>
+    Entr´ee. Un ensemble D de d´ependances fonctionnelles singletons, sur un
+    ensemble S de s attributs.
+
+    Sortie. La table des clˆotures T de D et l’ensemble K des cl´es de D.
+    Principe. Calculer les lignes de T en utilisant le calcul de clˆotures, pour les A
+    de cardinal croissant.<br>
+
+    -I- K = /0, T = /0.
+    -Bn- Pour chaque n de 1 `a s,
+    -BA- pour chaque A de cardinal n qui ne contient aucun ´el´ement de K
+    calculer A
+    +<br>
+    (par l’algorithme de clˆoture)
+    ajouter la ligne (A,A
+    + ) dans T
+    si A
+    + = S alors ajouter A dans K
+    -R- Retourner K et T.
+
+
+
+
+    Soit S = {a,b,c,d,e} avec l’ensemble de d´ependances fonctionnelles
+    singletons : (1)ab → c, (2)d → e, (3)bc → a, (4)bc → d.
+    <br>
+    |A| A A
+    +
+    cl´e?
+    1 a a
+    b b
+    c c
+    d de
+    e e
+    2 ab abcde cl´e
+    ac ac
+    ad ade
+    ae ae
+    bc abcde cl´e
+    bd bde
+    be be
+    cd cde
+    ce ce
+    de de
+    3 acd acde
+    ace ace
+    ade ade
+    bde bde
+    cde cde
+    4 acde acde
+
+
+    <br>
+    calcul des clés d'une relation sans passer par la cloture :
+    <br>
+    En effet dans les deux cas suivants on sait rapidement que A n’est pas
+    une cl´e, sans qu’il soit n´ecessaire de calculer A
+    +
+    :
+    Si aucun membre gauche de D n’est contenu dans A et si
+    A 6= S alors A n’est pas une cl´e : en effet alors A
+    +
+    = A et A 6= S,
+    donc A
+    + 6= S.
+    S’il existe un attribut a qui n’apparaˆıt dans aucun membre
+    droit de D et qui n’est pas contenu dans A alors A n’est pas
+    une cl´e : en effet alors a 6∈ A
+    +
+    , donc A
+    + 6= S.
+
+
+    calcul de la clé de taille minimum
+
+    Si on veut seulement connaˆıtre une cl´e, on proc`ede comme pour
+    toutes les cl´es mais on s’arrˆete d`es qu’on trouve la premi`ere cl´e.
+    <br>
+
+    si D est une base de d´ependances fonctionnelles et si D
+    et D 0
+    sont ´equivalents alors D 0
+    est aussi une base.
+
+    Une base de d´ependances fonctionnelles est un ensemble D de
+    d´ependances fonctionnelles tel qu’une d´ependance fonctionnelle est
+    satisfaite par les attributs si et seulement si elle est cons´equence de
+    D.
+    <br>
+
+    Soient S1,...,Sn des ensembles d’attributs de R tels que S1 ∪...∪Sn = S, o`u S est
+    l’ensemble des attributs de R.
+    <br>
+    Le produit naturel (ou jointure naturelle) R[S1]∗...∗R[Sn] a les mˆemes attributs que
+    R.
+    <br>
+    Les relations R[S1],...,R[Sn] forment une d´ecomposition de R si R = R[S1]∗...∗R[Sn].
+
+    Les relations R[S1],...,R[Sn] forment une d´ecomposition de R si
+    R = R[S1]∗...∗R[Sn].
+
+    condition suffisante pour obtenir une decomposition :
+
+    Propri´et´e : Soient S1 et S2 tels que S1 ∪S2 = S.
+    Si S2 → S et S1 ∩S2 → S1, alors R = R[S1 ]∗R[S2 ].
+    <br>
+    Theoreme de decomposition :
+    <br>
+    Soit A un ensemble d’attributs,
+    alors bien sˆur A ⊆ A+ ⊆ S, o`u S est l’ensemble des attributs de la
+    relation.
+    Soient R1 = R[A
+    +
+    ] et R2 = R[A ∪(S −A
+    +
+    )], alors :
+    Les attributs communs `a R1 et R2 sont exactement les attributs
+    de A.
+    R[A] = R1 [A] = R2 [A].
+    A est une supercl´e pour R1.
+    R1 = R si seulement si A
+    +
+    = S.
+    R2 = R si seulement si A
+    +
+    = A.
+    De plus, R = R1 ∗R2.
+
+    <br>
+
+    forme normale Boyce-Codd : BCNF, forme normale de Boyce-Codd : toutes les d´ependances de R
+    se d´eduisent de la connaissance des cl´es de R.
+
+    <br>
+    Forme normale 3NF : 3NF, 3`eme forme normale : la condition de BCNF est affaiblie.
+
+    algorithmes pour la décomposition :
+
+
+    On va ´etudier trois algorithmes pour calculer des d´ecompositions d’une
+    relation R, `a partir d’une base de d´ependances D sur les attributs de R :
+    Algorithme r´ecursif pour la BCNF qui ´evite les redondances, mais
+    peut perdre des d´ependances.
+    Algorithme de synth`ese pour la BCNF, qui pr´eserve les
+    d´ependances mais peut contenir des redondances.
+    Algorithme de synth`ese pour la 3NF, qui pr´eserve les d´ependances
+    et ´evite les redondances.
+
+    <br>
+
+    Propriete pour la decomposition assurer :
+
+    Soit R une relation et D une base de R.
+    Une d´ecomposition R = R[S1 ]∗...∗R[Sn ] peut v´eriﬁer, ou pas, une
+    des deux propri´et´es suivantes :
+    Une d´ecomposition R = R[S1 ]∗...∗R[Sn ] pr´eserve les
+    d´ependances de D si toute d´ependance fonctionnelle
+    a1 ...an → b de D est une d´ependance fonctionnelle d’une des
+    R[Si ] (c’est-`a-dire, si a1 ,...,an ,b sont tous dans un mˆeme Si ).
+    Cela signiﬁe que des attributs  reli´es  par une d´ependance
+    sont dans la mˆeme table de la d´ecomposition.
+    Une d´ecomposition R = R[S1 ]∗...∗R[Sn ] ´evite les redondances
+    si on n’a jamais Si ⊆ Sj avec i 6= j.
+    Cela signiﬁe que les donn´ees stock´ees dans les diff´erentes
+    tables ne sont  pas trop  redondantes : en effet si Si ⊆ Sj
+    alors toutes les donn´ees de R[Si ] sont aussi dans R[Sj ].
+
+
+    <br>
+    NOT LIKE AND LIKE statements
+    <br>
+    the regular wildcards reg-ex are | * + ? {m} {m,} {m,n} ^,$ [chars] ~ ~*
+
+    comme exemple on peut citer : xxx ~* '^a+[a-z\s]+$' // xxx ~* '[a-z0-9\.\-\_]+@[a-z0-9\-]+\.[a-z]{2,5}' // xxx ~* '^(a|b|c)$' //
+    <br>
+    CURRENT_DATE // CURRENT_TIME // CURRENT_DATETIME // CURRENT_TIMESTAMP sont des fonctions systèmes qui renvoient les dates et heures
+    <br>
+    AGE( new_date, old_date ) renvoient le nombre d'années et de mois et de jours entre deux dates
+    <br>
+    EXTRACT ( DAY/MONTH/YEAR/HOUR/MINUTE/SECONDS/ FROM 'date') donne le jour à partir de la date
+    <br>
+    CEIL( ... ) arrondi par defaut / FLOOR( ... ) arrondi par excès  /  RANDOM() * 20 + 10  generation des nombre entre ]10;30[ / POWER( number, valuer ) / ROUND( ... ) arrondi par défaut et par excès /
+    <br>
+    LENGTH( ... ) / UPPER( ... ) / LOWER( ... ) / REPLACE( ..., ..., ... ) / TRIM( ... ) / LTRIM( ..., ... ) remplace les espaces par le deuxieme parametre en question / RTRIM( ..., ...) remplace les espaces par le deuxieme parametre de la fonction en question / CONCAT( ..., ... ) / ... || ... || ... || ... /  SUBSTRIN( ... FORM ... FOR ... ) / STRING_AGG( ..., ... ) /
+    <br>
+    pour la creation d'une view, on fait : CREATE OR REPLACE VIEW ... AS ... ;
+    <br>
+    DROP VIEW ...; DELETE FROM ... : UPDATE VIEW ... SET ... = ..., ... = ...;
+
+    les sous requêtes peuvent etre utilisé dans les clauses tels que FROM , WHERE et aussi dans la clause SELECT
+
+    INNER JOIN ... ON ...x = ...x / RIGHT JOIN ... ON ...x = ...y / LEFT JOIN ... ON ... / CROSS JOIN ... / ... UNION ... / ... UNION ALL ... / ... INTERSECT ... / ... INTERSECT ALL ... / ... FULL OUTER JOIN ... ON ...x = ...y / ... MINUS ...
+    <br>
+    CASE  WHEN ... THEN ... WHEN ... THEN ... ELSE ... END
+    <br>
+    il est très important de comprendre ce qui se passe dans la logique du group by : après le group by , on a plusieurs tables séparées avec des colonnes indiquées dans le group by / avec having , on peut utiliser les colonnes avec les fonctions groupés si cette colonne n'est pas indiqué dans le group by /
+    <br>
+    COUNT( ... ) / SUM ( ... ) / AVERAGE( ... ) / MIN( ... ) / MAX( ... ) / ... AS ...
+
+    ORDER BY ... / LIMIT ...
+
+    ... AND ... / ... IN/ NOT IN  ... / ... BETWEEN / NOT BETWEEN ... / ... LIKE / NOT LIKE ...
+    <br>
+    Savoir utiliser les expressions du terme RESTORE ET BACKUP
+    <br>
+    INSERT INTO ... VALUES ... / INSERT INTO ... VALUES ... / SELECT ... / WHERE ... / AND + OR + NOT / UPDATE ... / DELETE FROM ... / ALTER TABLE ... ADD ... ... ..., DROP ... ADD CONSTRAINT ... , RENAME COLUMN ... TO ... / ALTER COLUMN ... ... ... / ADD PRIMARY KEY( ... ) / ALTER COLUMN ... SET NULL / ALTER COLUMN ... DROP  NULL / ADD CONSTRAINT ...  CONSTRAINT_DESCRIPTION ...
+    <br>
+    
+</p>
+
+</body>
+</html>
