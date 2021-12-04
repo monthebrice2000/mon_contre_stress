@@ -106,6 +106,169 @@
         </div>
     </div>
 
+    les sockets sont dans le fichier sys/socket.c <br><br>
+
+    un socket est caracterise par domain et mode et protocole <br><br>
+
+    la representation d'un socket est de la suivante : <br>
+    struct sockaddr_in <br>
+    {<br>
+    short sin_family;<br>
+    u_short sin_port;<br>
+    struct in_addr sin_addr;<br>
+    char sin_zero[8];<br>
+    };<br>
+
+    la fonction getaddrinfo permet de determiner l'adresse en fonction du nom DNS <br>
+    struct addrinfo {
+    int ai_flags;
+    int ai_family;
+    int ai_socktype;
+    int ai_protocol;
+    size_t ai_addrlen;
+    struct sockaddr *ai_addr;
+    char *ai_canonname;
+    struct addrinfo *ai_next;
+    };
+
+    char *inet ntoa (struct in addr in) convertit l'adresse IP de l'hôte en un nom DNS <br><br>
+    const char *inet ntop(int af, const void *src, char *dst, socklen t size); permet de convertir une adresse IP
+    en une chaine de caractere sous forme decimal pointé <br><br>
+    char str[INET ADDRSTRLEN] ;
+    inet ntop(AF INET, &(adr_serv.sin_addr), str, INET ADDRSTRLEN) ;
+    <br><br>
+
+    int inet pton(int af, const char *src, void *dst); <br><br>
+    permet de remplir un sockaddr_in par une chaine sous forme décimal pointé <br><br>
+    struct sockaddr in adr serv ;
+    inet pton(AF INET, ”192.0.0.1”, &(adr_serv.sin_addr)) ; <br><br>
+
+    int gethostname(char *nom, size_t lg); Permet de r´ecup´erer le nom de la machine uti-
+    lis´ee. <br><br>
+
+    int getsockname ( int socket, struct sockaddr in *name, int *namelen )
+    Cette proc´edure permet de r´ecup´erer l’adresse et le port (dans la structure sockaddr in) locaux
+    de la socket donn´ee en param`etre (utile en cas d’allocation dynamique du num´ero de port). <br><br>
+
+    int getpeername ( int socket, struct sockaddr in *name, int *namelen )
+    Cette proc´edure permet de r´ecup´erer l’adresse et le port (dans la structure sockaddr in) du
+    processus distant connect´e `a la socket donn´ee en param`etre. <br><br>
+
+    unsigned short htons(unsigned short port) permet de convertir le numero de port en local vers un numero de port reseau
+    <br><br>
+    unsigned long htonl(unsigned long port)
+    unsigned short ntohs(unsigned short port)
+    <br><br>
+    un socket a plusieurs options, un numero de protocole,
+
+    <br><br>
+    int getsockopt(int s, int level, int optname, void *optval, socklen t *optlen)
+    permet de r´ecup´erer les valeurs des options <br><br>
+    int setsockopt(int s, int level, int optname, const void *optval, socklen t optlen)
+    permet de mettre `a jour les options d’une socket <br><br>
+    int connect (int sock, struct sockaddr in *paddr, int lg struct) pour la gestion de la connexion <br><br>
+    int close(int sock)
+    La socket se ferme simplement au moyen de la fonction close(). <br><br>
+    int bind(int sock, struct sockaddr in *paddr, int lg struct) <br><br>
+    int listen(int sock, int nb connexion)
+    Elle permet d’informer le syst`eme d’exploitation de la pr´esence du nouveau serveur : <br><br>
+
+    int accept(int sock, struct sockaddr in *paddr, int *lg)
+    Elle permet d’attendre qu’un client se connecte au serveur : <br><br>
+    très important d'utiliser la fonction fork() <br><br>
+    int read (int sock, char *buffer, int nb a lire)
+    int write(int sock, char *buffer, int nb a ecrire) <br><br>
+
+    int sendto (int sock, char *buffer, int nb a ecrire, int flags, struct sockaddr in
+    *p adr distant, int taille struct) <br><br>
+    int recvfrom (int sock, char *buffer, int nb a lire, int flags, struct sockaddr in
+    *p adr distant, int taille struct) <br><br>
+
+    int select (int maxfdpl, fd set *readfds, fd set *writefds, fd set *exceptfds, struct
+    timeval *timeout)
+    Pour pouvoir ´ecouter deux descripteurs `a la fois et lire les donn´ees sur un descripteur quand
+    elles sont disponibles, on utilise la fonction select(), <br><br>
+
+    int open(const char *path, int flags, mode t mode)
+    Il permet d’associer un descripteur de ﬁchier `a un ﬁchier que l’on souhaite manipuler. En cas de
+    succ`es, le syst`eme d’exploitation va cr´eer une r´ef´erence dans la table des ﬁchiers et indiquer que le fichier
+    est ouvert <br><br>
+
+    int read(int fd, void *buf, size t nbytes) <br><br>
+
+    int write(int fd, void *buf, size t nbytes) <br><br>
+
+    int close(int fd) <br><br>
+
+    Les descripteurs de ﬁchiers 0, 1 et 2 sont sp´eciaux : ils repr´esentent respectivement l’entr´ee <br>
+    standard, la sortie standard et la sortie d’erreur. Si le programme est lanc´e depuis un terminal <br>
+    de commande sans redirection, 0 est associ´e au clavier, 1 et 2 `a l’´ecran. <br><br>
+
+    stdin => 0
+    stdout => 1
+    stderr => 2
+
+    <br><br>
+    Les fonctions scanf() et printf() travaillent respectivement sur stdin et stdout. <br><br>
+
+    FILE * fopen(char *path, char *mode) <br><br>
+
+    int fclose(FILE *stream) <br><br>
+
+    int fclose(FILE *stream) <br><br>
+
+    int fread(char *buffer, int TailleBloc, int NbBloc, FILE *stream) <br><br>
+
+    int fwrite(char *buffer, int TailleBloc, int NbBloc, FILE *stream) <br><br>
+
+    int feof(FILE *stream) <br><br>
+
+    int ferror(FILE *stream)
+    Cette fonction retourne une valeur diﬀ´erente de 0 si une erreur est survenue lors de la
+    derni`ere op´eration sur le ﬁchier stream. <br><br>
+
+    int fprintf(FILE *stream, const char *format, ...) <br><br>
+
+    %d : entier
+    %c : caract`ere
+    %s : cha^ıne de caract`eres
+    %f : flottant <br><br>
+    fprintf(f, "la valeur de i est : %d, la valeur de c est : %c\n", i, car)}; <br><br>
+
+    int fscanf(FILE *stream, const char *format, ...) <br><br>
+    Cette fonction lit le ﬁchier d´ecrit par stream, selon le format sp´eciﬁ´e par la chaˆıne
+    format et stocke les valeurs correspondantes aux adresses sp´eciﬁ´ees par les param`etres
+    suivants. <br><br>
+
+    fscanf(f, "%d %d", &i,&j) <br><br>
+
+    char * fgets(char *str, int size, FILE *stream) <br><br>
+
+    Cette fonction lit des caract`eres depuis le ﬁchier stream et les stocke dans la chaˆıne de
+    caract`eres str. <br><br>
+
+    int getc(FILE *stream) <br><br>
+    Cette fonction lit un caract`ere depuis le ﬁchier stream et le retourne sous forme d’entier. <br><br>
+
+    int putc(int c, FILE *stream) <br><br>
+    Cette fonction ´ecrit le caract`ere c dans le ﬁchier stream <br><br>
+
+    int fclose(FILE *stream) <br><br>
+    Cette fonction indique au syst`eme que le ﬁchier stream ne sera plus utilis´e et que les
+    ressources associ´ees peuvent ˆetre lib´er´ees. La fonction retourne EOF en cas d’erreur ou 0
+    sinon. <br><br>
+
+    Les fonctions int sprintf(char *str, const char *format,
+    ...) et int sscanf(const char *str, const char *format,
+    ...) <br><br>
+    Elles fonctionnent de la mˆeme mani`ere que les fonctions fprintf() et fscanf(), mais
+    prennent ou stockent leurs donn´ees dans une chaˆıne de caract`eres et non dans un ﬁchier. <br><br>
+
+
+
+
+
+
 
 </p>
 
